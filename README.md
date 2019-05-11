@@ -56,7 +56,7 @@ quarkus-sample
 
 ## STEP2: Enjoy coding
 
-Create new EchoResource.java file to src/main/java/sample/HelloResource.java
+Create new HelloResource.java file to src/main/java/sample/HelloResource.java
 
 ```java
 package sample;
