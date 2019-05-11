@@ -26,3 +26,10 @@ Hibernate:
 2019-05-11 21:50:47,315 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-postgresql, narayana-jta, resteasy, resteasy-jsonb]
 ```
 
+## Included extensions
+
+This application depends on the following Quarkus extensions:
+
+- Hibernate ORM with Panache (io.quarkus:quarkus-hibernate-orm-panache)
+- JDBC Driver - PostgreSQL (io.quarkus:quarkus-jdbc-postgresql)
+- RESTEasy - JSON-B (io.quarkus:quarkus-resteasy-jsonb)
