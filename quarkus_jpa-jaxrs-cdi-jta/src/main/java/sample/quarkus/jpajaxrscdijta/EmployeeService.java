@@ -14,8 +14,6 @@ import javax.transaction.Transactional;
 @Transactional
 public class EmployeeService {
 
-//    private static final Logger LOG = LoggerFactory.getLogger(EmployeeService.class);
-
     private static final Logger LOG = Logger.getLogger(EmployeeService.class);
 
     public List<Employee> getAll() {
