@@ -11,7 +11,7 @@ docker run --rm --name quarkus -e POSTGRES_USER=quarkus_test -e POSTGRES_PASSWOR
 mvn clean package -Pnative
 ```
 
-NOTE: native images build takes about `10` minutes on my machine.
+NOTE: Native image build takes about `10` minutes on my machine.
 
 3. Start native application:
 ```
