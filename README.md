@@ -80,7 +80,7 @@ If you want to hotswap while developing time, you can that by `mvn quarkus:dev` 
 
 Example codes are in `quarkus-sample` and `quarkus_jpa-jaxrs-cdi-jta` directory on this project.
 
-## STEP3: Start first your application on HosSpot JVM
+## STEP3: Start first your application on HotSpot JVM
 
 ```
 java -jar target/quarkus-sample-0.1-runner.jar
