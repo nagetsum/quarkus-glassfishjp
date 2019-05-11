@@ -170,14 +170,6 @@ Adding dependency io.quarkus:quarkus-resteasy-jsonb:jar
 
 The dependency `quarkus-resteasy-jsonb` was added by `quarkus:add-extensions`.
 
-Then, remove redundant extension from pom.xml
-```
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy</artifactId>
-    </dependency>
-```
-
 ```xml
 vim pom.xml
 ...
@@ -186,6 +178,14 @@ vim pom.xml
       <artifactId>quarkus-resteasy-jsonb</artifactId>
     </dependency>
 ...
+```
+
+Then, remove redundant extension from pom.xml
+```
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy</artifactId>
+    </dependency>
 ```
 
 Now, you can use JSONB on JAX-RS resource return type like the following:
