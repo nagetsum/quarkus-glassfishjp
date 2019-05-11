@@ -1,6 +1,6 @@
 # Quarkus - Glassfish User Group Japan 2019 Spring
 
-This document describes how to create my first `Quarkus` application.
+This document describes how to create your first `Quarkus` application.
 
 ## Preparation
 - GraalVM Community Edition 1.0 RC16
@@ -80,7 +80,7 @@ If you want to hotswap while developing time, you can that by `mvn quarkus:dev` 
 
 Example codes are in `quarkus-sample` and `quarkus_jpa-jaxrs-cdi-jta` directory on this project.
 
-## STEP3: Start first your application on HotSpot JVM
+## STEP3: Start your first application on HotSpot JVM
 
 ```
 java -jar target/quarkus-sample-0.1-runner.jar
