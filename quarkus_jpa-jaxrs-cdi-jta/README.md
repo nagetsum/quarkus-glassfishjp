@@ -1,20 +1,19 @@
 # Sample application of JAX-RS/CDI/JPA with Panashe
 
 ## How to use 
-Before you start application, you have to prepare PostgreSQL container.
-
+1. Before you start application, you have to prepare PostgreSQL container:
 ```
 docker run --rm --name quarkus -e POSTGRES_USER=quarkus_test -e POSTGRES_PASSWORD=quarkus_test -e POSTGRES_DB=quarkus_test -p 5432:5432 postgres:10.5
 ```
 
-Build native image:
+2. Build native image:
 ```
 mvn clean package -Pnative
 ```
 
 NOTE: native images build takes about `10` minutes on my machine.
 
-Start native application:
+3. Start native application:
 ```
 target/quarkus_jpa-jaxrs-cdi-jta-0.1-runner
 Hibernate:
