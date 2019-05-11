@@ -117,7 +117,7 @@ Hello, World!
 
 ### Check available extensions
 
-Quarkus extension is jar libraries that can compile by `native-image` command and can working on SubstrateVM.
+Quarkus extension is jar libraries that can compile by `native-image` command and can work on SubstrateVM.
 
 For example original Undertow and those dependency library such as `xnio` can not create native-image with the following error message.
 ```
