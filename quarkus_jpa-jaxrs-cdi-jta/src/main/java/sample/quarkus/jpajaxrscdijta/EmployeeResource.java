@@ -3,14 +3,12 @@ package sample.quarkus.jpajaxrscdijta;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 @Path("/")
-@Transactional
 public class EmployeeResource {
 
     @Inject
