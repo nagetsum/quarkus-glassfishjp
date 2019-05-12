@@ -36,7 +36,7 @@ public class EmployeeService {
     public long register(String name) {
         Employee newEmployee = new Employee(name);
         Employee.persist(newEmployee);
-        LOG.infof("New employee is registered : {1}", newEmployee);
+        LOG.infov("New employee is registered : {0}", newEmployee);
         return newEmployee.id;
     }
 
@@ -46,6 +46,6 @@ public class EmployeeService {
             throw new ApplicationException("Employee id = " + id + " is not found");
         }
         e.delete();
-        LOG.infof("Employee id = {1} is deleted", id);
+        LOG.infov("Employee id = {0} is deleted", id);
     }
 }
