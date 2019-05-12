@@ -1,0 +1,13 @@
+thorntail:
+  datasources:
+    data-sources:
+      PostgresDS:
+        driver-name: postgresql
+        connection-url: jdbc:postgresql:quarkus_test
+        user-name: quarkus_test
+        password: quarkus_test
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+        validate-on-match: true
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+  jpa:
+    default-datasource: PostgresDS
