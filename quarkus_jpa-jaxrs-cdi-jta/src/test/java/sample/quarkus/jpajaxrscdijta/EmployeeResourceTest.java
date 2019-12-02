@@ -2,7 +2,7 @@ package sample.quarkus.jpajaxrscdijta;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
-import io.restassured.mapper.TypeRef;
+import io.restassured.common.mapper.TypeRef;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
