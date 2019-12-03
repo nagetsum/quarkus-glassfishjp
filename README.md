@@ -1,22 +1,23 @@
-# Quarkus - Glassfish User Group Japan 2019 Spring
+# Quarkus - Japan JBoss User Group 2019
 
 This document describes how to create your first `Quarkus` application.
 
 ## Preparation
-- GraalVM Community Edition 1.0 RC16
-    - https://github.com/oracle/graal/releases/tag/vm-1.0.0-rc16
-    - Mac or Linux (GraalVM CE 1.0 RC16 does not support Windows)
+- GraalVM Community Edition 19.2.1
+    - https://github.com/oracle/graal/releases/tag/vm-19.2.1
+    - Mac or Linux or Windows
     - Set environment valiable GRAALVM_HOME="Graal install-dir"
-    - NOTE: Quarkus0.14.0 does not support GraalVM Community Edition 19.0.0 for now.
+    - install Native Image by `gu install native-image`
+    - NOTE: Quarkus1.0.1 does not support GraalVM Community Edition 19.3.0 for now.
 
 - Maven
     - 3.5.3 or higher
-    - This document is tested on Maven 3.6.1
+    - This document is tested on Maven 3.6.2
 
 ## STEP1: Create "Quarkus" blank project
 
 ```
-mvn io.quarkus:quarkus-maven-plugin:0.14.0:create \
+mvn io.quarkus:quarkus-maven-plugin:1.0.1.Final:create \
     -DprojectGroupId=sample \
     -DprojectArtifactId=quarkus-sample \
     -DprojectVersion=0.1
@@ -28,6 +29,7 @@ Blank project contains as the following files:
 $ tree -a quarkus-sample
 quarkus-sample
 ├── .dockerignore
+├── .gitignore
 ├── .mvn
 │   └── wrapper
 │       ├── MavenWrapperDownloader.java
@@ -50,7 +52,7 @@ quarkus-sample
     └── test
         └── java
 
-11 directories, 11 files
+11 directories, 12 files
 ```
 
 
@@ -84,8 +86,9 @@ Example codes are in `quarkus-sample` and `quarkus_jpa-jaxrs-cdi-jta` directory 
 
 ```
 java -jar target/quarkus-sample-0.1-runner.jar
-2019-05-11 20:25:17,805 INFO  [io.quarkus] (main) Quarkus 0.14.0 started in 1.075s. Listening on: http://[::]:8080
-2019-05-11 20:25:17,817 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
+2019-12-03 22:42:24,117 INFO  [io.quarkus] (main) quarkus-sample 0.1 (running on Quarkus 1.0.1.Final) started in 0.857s. Listening on: http://0.0.0.0:8080
+2019-12-03 22:42:24,126 INFO  [io.quarkus] (main) Profile prod activated.
+2019-12-03 22:42:24,126 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
 
 curl localhost:8080/hello
 Hello, World!
@@ -97,7 +100,7 @@ Hello, World!
 ./mvnw clean package -Pnative
 ```
 
-It take about `180` seconds on my machine (Mac book pro late 2016).
+It take about `90` seconds on my machine (Mac book pro late 2016).
 
 ## STEP5: Start your native application
 
@@ -106,8 +109,9 @@ You can experience `Supersonic Subatomic Java` by Quarkus.
 ```
 cd target
 ./quarkus-sample-0.1-runner
-2019-05-11 20:29:52,809 INFO  [io.quarkus] (main) Quarkus 0.14.0 started in 0.014s. Listening on: http://[::]:8080
-2019-05-11 20:29:52,839 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
+2019-12-03 22:48:48,114 INFO  [io.quarkus] (main) quarkus-sample 0.1 (running on Quarkus 1.0.1.Final) started in 0.009s. Listening on: http://0.0.0.0:8080
+2019-12-03 22:48:48,114 INFO  [io.quarkus] (main) Profile prod activated.
+2019-12-03 22:48:48,114 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
 
 curl localhost:8080/hello
 Hello, World!
@@ -139,18 +143,17 @@ All extension list can check by `mvn quarkus:list-extensions` as the folowing:
 cd quarku-sample
 ./mvnw quarkus:list-extensions
 ...
-[INFO] --- quarkus-maven-plugin:0.14.0:list-extensions (default-cli) @ quarkus-sample ---
-[INFO] Available extensions:
-[INFO]   * Agroal - Database connection pool (io.quarkus:quarkus-agroal)
-[INFO]   * Arc (io.quarkus:quarkus-arc)
-[INFO]   * AWS Lambda (io.quarkus:quarkus-amazon-lambda)
-[INFO]   * Camel Core (io.quarkus:quarkus-camel-core)
-[INFO]   * Camel Infinispan (io.quarkus:quarkus-camel-infinispan)
-[INFO]   * Camel Netty4 HTTP (io.quarkus:quarkus-camel-netty4-http)
-[INFO]   * Camel Salesforce (io.quarkus:quarkus-camel-salesforce)
-[INFO]   * Eclipse Vert.x (io.quarkus:quarkus-vertx)
-[INFO]   * Flyway (io.quarkus:quarkus-flyway)
-[INFO]   * Hibernate ORM (io.quarkus:quarkus-hibernate-orm)
+urrent Quarkus extensions available:
+Quarkus - Core                                     quarkus-core
+JAXB                                               quarkus-jaxb
+Jackson                                            quarkus-jackson
+JSON-B                                             quarkus-jsonb
+JSON-P                                             quarkus-jsonp
+Agroal - Database connection pool                  quarkus-agroal
+Artemis JMS                                        quarkus-artemis-jms
+Elytron Security                                   quarkus-elytron-security
+Properties File based Security                     quarkus-elytron-security-properties-file
+Elytron Security OAuth 2.0                         quarkus-elytron-security-oauth2
 ...
 ```
 
@@ -158,17 +161,29 @@ cd quarku-sample
 
 In this example, add a extensions to pom.xml via `mvnw quarkus:add-extension -Dextensions=a, b, c`.
 
-- io.quarkus:quarkus-resteasy-jsonb
+- quarkus-resteasy-jsonb
 
 ```
-./mvnw quarkus:add-extension -Dextensions="io.quarkus:io.quarkus:quarkus-resteasy-jsonb"
+./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy-jsonb"
 ...
-[INFO] --- quarkus-maven-plugin:0.14.0:add-extension (default-cli) @ quarkus-sample ---
-Adding dependency io.quarkus:quarkus-resteasy-jsonb:jar
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< sample:quarkus-sample >------------------------
+[INFO] Building quarkus-sample 0.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- quarkus-maven-plugin:1.0.1.Final:add-extension (default-cli) @ quarkus-sample ---
+✅ Adding extension io.quarkus:quarkus-resteasy-jsonb
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.976 s
+[INFO] Finished at: 2019-12-03T23:12:13+09:00
+[INFO] ------------------------------------------------------------------------
 ...
 ```
 
-The dependency `quarkus-resteasy-jsonb` was added by `quarkus:add-extensions`.
+The dependency `quarkus-resteasy-jsonb` was added by `quarkus:add-extension`.
 
 ```xml
 vim pom.xml
