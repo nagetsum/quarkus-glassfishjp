@@ -1,13 +1,15 @@
 package sample.quarkus.crud.spring;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
+
+    // At startup time, we already has 5 records in Employee table by import.sql.
+    // So, we have to start id-sequence from "6"
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "employeeSequence", initialValue = 6)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employeeSequence")
     private Long id;
     private String name;
 
@@ -18,7 +20,7 @@ public class Employee {
         this.name = name;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

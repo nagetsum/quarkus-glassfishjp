@@ -1,6 +1,7 @@
 package sample.quarkus.crud.spring;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,13 +32,12 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void resign(@PathVariable long id) {
+    public ResponseEntity<Void> resign(@PathVariable long id) {
         if (employeeRepository.findById(id).isPresent()) {
             employeeRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
         } else {
-            System.out.println("throw exception");
-            throw new NotFoundException("employee id = " + id + " is not found");
+            return ResponseEntity.notFound().build();
         }
     }
 }
