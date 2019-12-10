@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Quarkus Qute template engine</title>
+</head>
+<body>
+<h1>Loop elements and conditions by qute template</h1>
+<p>List of items over 100 yen</p>
+<ul>
+    {#each items}
+        {#if it.price > 100}
+            <li>name: {it.name} , price: {it.price}</li>
+        {/if}
+    {/each}
+</ul>
+</body>
+</html>
